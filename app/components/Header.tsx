@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import ConsultationForm from './ConsultationForm';
 
 const SERVICES = [
     {
@@ -55,11 +56,25 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isServicesOpen, setIsServicesOpen] = useState(false);
     const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+    const [isConsultationOpen, setIsConsultationOpen] = useState(false);
     const servicesCloseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const closeMobileMenu = () => {
         setIsMenuOpen(false);
         setMobileServicesOpen(false);
+    };
+
+    const openConsultationModal = () => {
+        setIsConsultationOpen(true);
+    };
+
+    const openConsultationFromMobileMenu = () => {
+        closeMobileMenu();
+        setIsConsultationOpen(true);
+    };
+
+    const closeConsultationModal = () => {
+        setIsConsultationOpen(false);
     };
 
     const openServicesMenu = () => {
@@ -85,7 +100,7 @@ export default function Header() {
     }, []);
 
     useEffect(() => {
-        if (!isMenuOpen) {
+        if (!isMenuOpen && !isConsultationOpen) {
             return;
         }
 
@@ -95,7 +110,24 @@ export default function Header() {
         return () => {
             document.body.style.overflow = originalOverflow;
         };
-    }, [isMenuOpen]);
+    }, [isMenuOpen, isConsultationOpen]);
+
+    useEffect(() => {
+        if (!isConsultationOpen) {
+            return;
+        }
+
+        const handleEscape = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                closeConsultationModal();
+            }
+        };
+
+        window.addEventListener('keydown', handleEscape);
+        return () => {
+            window.removeEventListener('keydown', handleEscape);
+        };
+    }, [isConsultationOpen]);
 
     return (
         <header className="sticky top-0 z-50 bg-white shadow-sm dark:bg-black">
@@ -199,7 +231,11 @@ export default function Header() {
 
                     {/* CTA Button */}
                     <div className="hidden items-center space-x-4 md:flex">
-                        <button className="btn-primary px-6 py-2">
+                        <button
+                            type="button"
+                            onClick={openConsultationModal}
+                            className="btn-primary px-6 py-2"
+                        >
                             Get Started
                         </button>
                     </div>
@@ -348,11 +384,47 @@ export default function Header() {
                         >
                             Contact
                         </Link>
-                        <button className="btn-primary w-full px-4 py-2">
+                        <button
+                            type="button"
+                            onClick={openConsultationFromMobileMenu}
+                            className="btn-primary w-full px-4 py-2"
+                        >
                             Get Started
                         </button>
                     </div>
                 </aside>
+            </div>
+
+            {/* Consultation Popup */}
+            <div
+                className={`fixed inset-0 z-[70] flex items-center justify-center p-4 transition-all duration-300 sm:p-6 ${isConsultationOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+                    }`}
+                aria-hidden={!isConsultationOpen}
+            >
+                <button
+                    type="button"
+                    aria-label="Close consultation popup"
+                    onClick={closeConsultationModal}
+                    className={`absolute inset-0 bg-black/55 transition-opacity duration-300 ${isConsultationOpen ? 'opacity-100' : 'opacity-0'
+                        }`}
+                />
+
+                <div
+                    className={`relative z-[71] w-full max-w-lg transform transition-all duration-300 ${isConsultationOpen ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-5 scale-95 opacity-0'
+                        }`}
+                    onClick={(event) => event.stopPropagation()}
+                >
+                    <button
+                        type="button"
+                        onClick={closeConsultationModal}
+                        className="absolute -right-2 -top-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-slate-900 text-white shadow-lg transition hover:bg-slate-800"
+                        aria-label="Close consultation popup"
+                    >
+                        ✕
+                    </button>
+
+                    <ConsultationForm />
+                </div>
             </div>
         </header>
     );

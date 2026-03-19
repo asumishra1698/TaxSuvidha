@@ -57,6 +57,11 @@ export default function Header() {
     const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
     const servicesCloseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    const closeMobileMenu = () => {
+        setIsMenuOpen(false);
+        setMobileServicesOpen(false);
+    };
+
     const openServicesMenu = () => {
         if (servicesCloseTimeoutRef.current) {
             clearTimeout(servicesCloseTimeoutRef.current);
@@ -78,6 +83,19 @@ export default function Header() {
             }
         };
     }, []);
+
+    useEffect(() => {
+        if (!isMenuOpen) {
+            return;
+        }
+
+        const originalOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+
+        return () => {
+            document.body.style.overflow = originalOverflow;
+        };
+    }, [isMenuOpen]);
 
     return (
         <header className="sticky top-0 z-50 bg-white shadow-sm dark:bg-black">
@@ -160,6 +178,12 @@ export default function Header() {
                         </div>
 
                         <Link
+                            href="/blogs"
+                            className="text-gray-600 transition hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                        >
+                            Blog
+                        </Link>
+                        <Link
                             href="/pages/about"
                             className="text-gray-600 transition hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                         >
@@ -182,9 +206,10 @@ export default function Header() {
 
                     {/* Mobile Menu Button */}
                     <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        onClick={() => setIsMenuOpen((open) => !open)}
                         className="md:hidden"
                         aria-label="Toggle menu"
+                        aria-expanded={isMenuOpen}
                     >
                         <svg
                             className="h-6 w-6 text-gray-600 dark:text-gray-300"
@@ -211,91 +236,124 @@ export default function Header() {
                     </button>
                 </div>
 
-                {/* Mobile Menu */}
-                <div
-                    className={`grid transition-all duration-300 ease-in-out md:hidden ${isMenuOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
-                        }`}
-                >
-                    <div className="overflow-hidden">
-                        <div className="border-t border-gray-200 py-4 dark:border-gray-700">
-                            <div className="space-y-2">
-                                <Link
-                                    href="/"
-                                    className="block rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900"
-                                >
-                                    Home
-                                </Link>
+            </nav>
 
-                                {/* Mobile Services Accordion */}
-                                <div>
-                                    <button
-                                        onClick={() => setMobileServicesOpen((v) => !v)}
-                                        className="flex w-full items-center justify-between rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900"
-                                    >
-                                        Services
-                                        <svg
-                                            className={`h-4 w-4 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`}
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </button>
-                                    <div
-                                        className={`grid transition-all duration-300 ease-in-out ${mobileServicesOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
-                                            }`}
-                                    >
-                                        <div className="overflow-hidden">
-                                            <div className="mt-1 space-y-4 rounded-lg bg-gray-50 px-4 py-3 dark:bg-slate-800">
-                                                {SERVICES.map((section) => (
-                                                    <div key={section.category}>
-                                                        <p className="mb-2 text-xs font-bold uppercase tracking-widest text-amber-500">
-                                                            {section.category}
-                                                        </p>
-                                                        <ul className="space-y-1">
-                                                            {section.links.map((link) => (
-                                                                <li key={link.slug}>
-                                                                    <Link
-                                                                        href={`/services/${link.slug}`}
-                                                                        className="block text-sm text-gray-600 transition hover:text-blue-600 dark:text-slate-400 dark:hover:text-white"
-                                                                    >
-                                                                        {link.label}
-                                                                    </Link>
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                ))}
-                                                <Link
-                                                    href="/services"
-                                                    className="mt-2 block text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400"
-                                                >
-                                                    View all services →
-                                                </Link>
+            {/* Mobile Sidebar Menu */}
+            <div className="md:hidden">
+                <button
+                    type="button"
+                    aria-label="Close mobile menu overlay"
+                    onClick={closeMobileMenu}
+                    className={`fixed inset-0 z-40 bg-black/45 transition-opacity duration-300 ${isMenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+                        }`}
+                />
+
+                <aside
+                    className={`fixed right-0 top-0 z-50 h-dvh w-[86vw] max-w-sm transform border-l border-gray-200 bg-white p-5 shadow-2xl transition-transform duration-300 ease-out dark:border-slate-700 dark:bg-black ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                        }`}
+                    aria-hidden={!isMenuOpen}
+                >
+                    <div className="flex items-center justify-between border-b border-gray-200 pb-4 dark:border-slate-700">
+                        <p className="text-sm font-bold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">Menu</p>
+                        <button
+                            type="button"
+                            onClick={closeMobileMenu}
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 transition hover:bg-gray-100 dark:border-slate-600 dark:text-gray-200 dark:hover:bg-slate-900"
+                            aria-label="Close mobile menu"
+                        >
+                            ✕
+                        </button>
+                    </div>
+
+                    <div className="mt-4 space-y-2 overflow-y-auto pb-8">
+                        <Link
+                            href="/"
+                            onClick={closeMobileMenu}
+                            className="block rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900"
+                        >
+                            Home
+                        </Link>
+
+                        {/* Mobile Services Accordion */}
+                        <div>
+                            <button
+                                onClick={() => setMobileServicesOpen((v) => !v)}
+                                className="flex w-full items-center justify-between rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900"
+                                aria-expanded={mobileServicesOpen}
+                            >
+                                Services
+                                <svg
+                                    className={`h-4 w-4 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`}
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div
+                                className={`grid transition-all duration-300 ease-in-out ${mobileServicesOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                                    }`}
+                            >
+                                <div className="overflow-hidden">
+                                    <div className="mt-1 space-y-4 rounded-lg bg-gray-50 px-4 py-3 dark:bg-slate-900">
+                                        {SERVICES.map((section) => (
+                                            <div key={section.category}>
+                                                <p className="mb-2 text-xs font-bold uppercase tracking-widest text-amber-500">
+                                                    {section.category}
+                                                </p>
+                                                <ul className="space-y-1">
+                                                    {section.links.map((link) => (
+                                                        <li key={link.slug}>
+                                                            <Link
+                                                                href={`/services/${link.slug}`}
+                                                                onClick={closeMobileMenu}
+                                                                className="block text-sm text-gray-600 transition hover:text-blue-600 dark:text-slate-400 dark:hover:text-white"
+                                                            >
+                                                                {link.label}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                                </ul>
                                             </div>
-                                        </div>
+                                        ))}
+                                        <Link
+                                            href="/services"
+                                            onClick={closeMobileMenu}
+                                            className="mt-2 block text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                                        >
+                                            View all services →
+                                        </Link>
                                     </div>
                                 </div>
-
-                                <Link
-                                    href="/pages/about"
-                                    className="block rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900"
-                                >
-                                    About
-                                </Link>
-                                <Link
-                                    href="/pages/contact"
-                                    className="block rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900"
-                                >
-                                    Contact
-                                </Link>
-                                <button className="btn-primary w-full px-4 py-2">
-                                    Get Started
-                                </button>
                             </div>
                         </div>
+
+                        <Link
+                            href="/blogs"
+                            onClick={closeMobileMenu}
+                            className="block rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900"
+                        >
+                            Blog
+                        </Link>
+                        <Link
+                            href="/pages/about"
+                            onClick={closeMobileMenu}
+                            className="block rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900"
+                        >
+                            About
+                        </Link>
+                        <Link
+                            href="/pages/contact"
+                            onClick={closeMobileMenu}
+                            className="block rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900"
+                        >
+                            Contact
+                        </Link>
+                        <button className="btn-primary w-full px-4 py-2">
+                            Get Started
+                        </button>
                     </div>
-                </div>
-            </nav>
+                </aside>
+            </div>
         </header>
     );
 }

@@ -75,25 +75,21 @@ export default function BlogSlider() {
   const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
 
   useEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 767px)');
+    const tabletQuery = window.matchMedia('(max-width: 1279px)');
+
     const updateCardsPerView = () => {
-      if (window.innerWidth < 768) {
-        setCardsPerView(1);
-        return;
-      }
-
-      if (window.innerWidth < 1280) {
-        setCardsPerView(2);
-        return;
-      }
-
-      setCardsPerView(3);
+      const nextCardsPerView = mobileQuery.matches ? 1 : tabletQuery.matches ? 2 : 3;
+      setCardsPerView((prev) => (prev === nextCardsPerView ? prev : nextCardsPerView));
     };
 
     updateCardsPerView();
-    window.addEventListener('resize', updateCardsPerView);
+    mobileQuery.addEventListener('change', updateCardsPerView);
+    tabletQuery.addEventListener('change', updateCardsPerView);
 
     return () => {
-      window.removeEventListener('resize', updateCardsPerView);
+      mobileQuery.removeEventListener('change', updateCardsPerView);
+      tabletQuery.removeEventListener('change', updateCardsPerView);
     };
   }, []);
 
@@ -176,7 +172,7 @@ export default function BlogSlider() {
           onMouseLeave={() => setIsPaused(false)}
         >
           <div
-            className={`flex ${isTransitionEnabled ? 'transition-transform duration-700 ease-out' : ''}`}
+            className={`flex transform-gpu will-change-transform ${isTransitionEnabled ? 'transition-transform duration-700 ease-out' : ''}`}
             style={{ transform: `translateX(-${activeIndex * slideWidth}%)` }}
             onTransitionEnd={handleTransitionEnd}
           >

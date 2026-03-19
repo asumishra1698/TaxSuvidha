@@ -174,25 +174,21 @@ export default function TestimonialSlider() {
     const wheelLockRef = useRef(false);
 
     useEffect(() => {
+        const mobileQuery = window.matchMedia('(max-width: 639px)');
+        const tabletQuery = window.matchMedia('(max-width: 1023px)');
+
         const updateCardsPerView = () => {
-            if (window.innerWidth < 640) {
-                setCardsPerView(1);
-                return;
-            }
-
-            if (window.innerWidth < 1024) {
-                setCardsPerView(2);
-                return;
-            }
-
-            setCardsPerView(4);
+            const nextCardsPerView = mobileQuery.matches ? 1 : tabletQuery.matches ? 2 : 4;
+            setCardsPerView((prev) => (prev === nextCardsPerView ? prev : nextCardsPerView));
         };
 
         updateCardsPerView();
-        window.addEventListener('resize', updateCardsPerView);
+        mobileQuery.addEventListener('change', updateCardsPerView);
+        tabletQuery.addEventListener('change', updateCardsPerView);
 
         return () => {
-            window.removeEventListener('resize', updateCardsPerView);
+            mobileQuery.removeEventListener('change', updateCardsPerView);
+            tabletQuery.removeEventListener('change', updateCardsPerView);
         };
     }, []);
 
@@ -301,7 +297,7 @@ export default function TestimonialSlider() {
                         onWheel={handleWheel}
                     >
                         <div
-                            className={`flex ${isTransitionEnabled ? 'transition-transform duration-700 ease-out' : ''}`}
+                            className={`flex transform-gpu will-change-transform ${isTransitionEnabled ? 'transition-transform duration-700 ease-out' : ''}`}
                             style={{ transform: `translateX(-${activeIndex * slideWidth}%)` }}
                             onTransitionEnd={handleTransitionEnd}
                         >

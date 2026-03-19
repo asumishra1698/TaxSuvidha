@@ -138,7 +138,7 @@ export default function Footer() {
                             </li>
                             <li>
                                 <Link
-                                    href="#"
+                                    href="/blogs"
                                     className="text-sm text-slate-400 transition hover:text-white"
                                 >
                                     Blog

@@ -312,7 +312,7 @@ export default function Header() {
                         <button
                             type="button"
                             onClick={closeMobileMenu}
-                            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 transition hover:bg-gray-100 dark:border-slate-600 dark:text-gray-200 dark:hover:bg-slate-900"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-lg leading-none text-gray-700 transition hover:bg-gray-100 dark:border-slate-600 dark:text-gray-200 dark:hover:bg-slate-900"
                             aria-label="Close mobile menu"
                         >
                             ✕
@@ -415,7 +415,7 @@ export default function Header() {
 
             {/* Consultation Popup */}
             <div
-                className={`fixed inset-0 z-[70] flex items-center justify-center p-4 transition-all duration-300 sm:p-6 ${isConsultationOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+                className={`fixed inset-0 z-[70] flex items-center justify-center overflow-y-auto p-3 transition-all duration-300 sm:p-6 ${isConsultationOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
                     }`}
                 aria-hidden={!isConsultationOpen}
             >
@@ -428,20 +428,22 @@ export default function Header() {
                 />
 
                 <div
-                    className={`relative z-[71] w-full max-w-lg transform transition-all duration-300 ${isConsultationOpen ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-5 scale-95 opacity-0'
+                    className={`relative z-[71] my-auto w-full max-w-lg transform overflow-hidden rounded-2xl transition-all duration-300 max-sm:max-h-[calc(100dvh-1.5rem)] sm:max-h-[calc(100dvh-3rem)] ${isConsultationOpen ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-5 scale-95 opacity-0'
                         }`}
                     onClick={(event) => event.stopPropagation()}
                 >
                     <button
                         type="button"
                         onClick={closeConsultationModal}
-                        className="absolute -right-2 -top-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-slate-900 text-white shadow-lg transition hover:bg-slate-800"
+                        className="absolute right-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 bg-white/95 text-lg leading-none text-gray-700 shadow-md transition hover:bg-gray-100 dark:border-slate-600 dark:bg-slate-900/95 dark:text-gray-200 dark:hover:bg-slate-800"
                         aria-label="Close consultation popup"
                     >
                         ✕
                     </button>
 
-                    <ConsultationForm />
+                    <div className="modal-form-scroll max-h-[calc(100dvh-1.5rem)] overflow-y-auto sm:max-h-[calc(100dvh-3rem)]">
+                        <ConsultationForm onSuccess={closeConsultationModal} />
+                    </div>
                 </div>
             </div>
         </header>

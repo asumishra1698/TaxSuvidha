@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 type FormState = {
   name: string;
@@ -8,6 +9,11 @@ type FormState = {
   contactNumber: string;
   services: string[];
 };
+
+type ToastState = {
+  type: 'success' | 'error';
+  message: string;
+} | null;
 
 const availableServices = [
   'Income Tax Filing',
@@ -17,7 +23,11 @@ const availableServices = [
   'Business Compliance',
 ] as const;
 
-export default function ConsultationForm() {
+type ConsultationFormProps = {
+  onSuccess?: () => void;
+};
+
+export default function ConsultationForm({ onSuccess }: ConsultationFormProps) {
   const [formState, setFormState] = useState<FormState>({
     name: '',
     email: '',
@@ -25,14 +35,32 @@ export default function ConsultationForm() {
     services: [],
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [statusMessage, setStatusMessage] = useState<string | null>(null);
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [toast, setToast] = useState<ToastState>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => {
+      setIsMounted(false);
+    };
+  }, []);
+
+  const showToast = (type: 'success' | 'error', message: string) => {
+    setToast({ type, message });
+    setTimeout(() => {
+      setToast(null);
+    }, 3000);
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+
+    const normalizedValue =
+      name === 'contactNumber' ? value.replace(/\D/g, '').slice(0, 10) : value;
+
     setFormState((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: normalizedValue,
     }));
   };
 
@@ -49,15 +77,18 @@ export default function ConsultationForm() {
     event.preventDefault();
 
     if (formState.services.length === 0) {
-      setSubmitError('Please select at least one service.');
-      setStatusMessage(null);
+      showToast('error', 'Please select at least one service.');
+      return;
+    }
+
+    if (!/^\d{10}$/.test(formState.contactNumber)) {
+      showToast('error', 'Please enter a valid 10-digit contact number.');
       return;
     }
 
     try {
       setIsSubmitting(true);
-      setSubmitError(null);
-      setStatusMessage(null);
+      setToast(null);
 
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -78,15 +109,18 @@ export default function ConsultationForm() {
         throw new Error(result.error ?? 'Failed to submit consultation request.');
       }
 
-      setStatusMessage(result.message ?? 'Thanks! Our team will contact you shortly.');
+      showToast('success', result.message ?? 'Thanks! Our team will contact you shortly.');
       setFormState({
         name: '',
         email: '',
         contactNumber: '',
         services: [],
       });
+
+      onSuccess?.();
     } catch (error) {
-      setSubmitError(
+      showToast(
+        'error',
         error instanceof Error
           ? error.message
           : 'Something went wrong while submitting your request.'
@@ -99,7 +133,7 @@ export default function ConsultationForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-gray-200 bg-white p-6 shadow-xl dark:border-gray-700 dark:bg-gray-900"
+      className="rounded-2xl border border-gray-200 bg-white p-4 shadow-xl sm:p-6 dark:border-gray-700 dark:bg-gray-900"
     >
       <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
         Get Free Consultation
@@ -161,6 +195,11 @@ export default function ConsultationForm() {
             value={formState.contactNumber}
             onChange={handleInputChange}
             required
+            inputMode="numeric"
+            pattern="[0-9]{10}"
+            maxLength={10}
+            minLength={10}
+            title="Please enter a valid 10-digit contact number"
             placeholder="Enter contact number"
             className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
           />
@@ -182,7 +221,7 @@ export default function ConsultationForm() {
                   onChange={() => handleServiceToggle(service)}
                   className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
-                <span>{service}</span>
+                <span className="text-xs leading-5">{service}</span>
               </label>
             ))}
           </div>
@@ -197,13 +236,24 @@ export default function ConsultationForm() {
         {isSubmitting ? 'Submitting...' : 'Submit Request'}
       </button>
 
-      {statusMessage ? (
-        <p className="mt-3 text-sm text-green-600 dark:text-green-400">{statusMessage}</p>
-      ) : null}
-
-      {submitError ? (
-        <p className="mt-3 text-sm text-red-600 dark:text-red-400">{submitError}</p>
-      ) : null}
+      {isMounted && toast
+        ? createPortal(
+            <div className="pointer-events-none fixed right-4 top-4 z-[100] sm:right-6 sm:top-6">
+              <div
+                role="status"
+                aria-live="polite"
+                className={`max-w-sm rounded-lg px-4 py-3 text-sm font-medium shadow-lg ${
+                  toast.type === 'success'
+                    ? 'border border-green-200 bg-green-50 text-green-700 dark:border-green-900/40 dark:bg-green-900/20 dark:text-green-300'
+                    : 'border border-red-200 bg-red-50 text-red-700 dark:border-red-900/40 dark:bg-red-900/20 dark:text-red-300'
+                }`}
+              >
+                {toast.message}
+              </div>
+            </div>,
+            document.body
+          )
+        : null}
     </form>
   );
 }

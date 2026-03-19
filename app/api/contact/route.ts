@@ -74,7 +74,7 @@ export async function POST(request: Request) {
       from: process.env.CONTACT_FROM_EMAIL ?? process.env.SMTP_USER,
       to: process.env.CONTACT_RECEIVER_EMAIL,
       replyTo: email,
-      subject: `[Website Enquiry] ${subject}`,
+      subject: `[Website Enquiry] ${subject} - ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
       html: `
         <div style="margin:0;background:#f4f7fb;padding:24px 12px;font-family:Arial,Helvetica,sans-serif;color:#0f172a;">

@@ -1,0 +1,17 @@
+{
+  "name": "taxsuvidha-functions",
+  "private": true,
+  "main": "index.js",
+  "engines": {
+    "node": "20"
+  },
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-functions": "^6.4.0",
+    "nodemailer": "^8.0.3"
+  }
+}

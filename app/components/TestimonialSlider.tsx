@@ -197,8 +197,6 @@ export default function TestimonialSlider() {
         ...testimonials,
         ...testimonials.slice(0, cardsPerView),
     ];
-    const currentRealIndex =
-        ((activeIndex - cardsPerView) % testimonials.length + testimonials.length) % testimonials.length;
     const slideWidth = 100 / cardsPerView;
 
     const next = () => {
@@ -347,19 +345,6 @@ export default function TestimonialSlider() {
                         >
                             ←
                         </button>
-
-                        {/* <div className="flex items-center gap-2">
-                            {Array.from({ length: testimonials.length }).map((_, idx) => (
-                                <button
-                                    key={`dot-${idx}`}
-                                    type="button"
-                                    onClick={() => setActiveIndex(cardsPerView + idx)}
-                                    aria-label={`Go to testimonial slide ${idx + 1}`}
-                                    className={`h-2.5 w-2.5 rounded-full transition ${idx === currentRealIndex ? 'bg-white' : 'bg-slate-600'
-                                        }`}
-                                />
-                            ))}
-                        </div> */}
 
                         <button
                             type="button"

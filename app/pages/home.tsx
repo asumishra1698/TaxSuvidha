@@ -370,7 +370,7 @@ export default function Home() {
 
               <div className="mt-6 space-y-2 text-xl font-medium text-slate-100">
                 <p>📞 Call Now: +91 9999 24 1024</p>
-                <p>📩 Email: info@Tax Suvidha Kendrakendra.com</p>
+                <p>📩 Email: info@taxsuvidhakendra.com</p>
               </div>
 
               <p className="mt-5 text-base text-slate-300">

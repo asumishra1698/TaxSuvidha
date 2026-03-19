@@ -188,7 +188,7 @@ export default function Header() {
                                                     <li key={link.slug}>
                                                         <Link
                                                             href={`/services/${link.slug}`}
-                                                            className="text-sm text-gray-600 transition hover:text-blue-600 dark:text-slate-400 dark:hover:text-white"
+                                                            className="text-[14px] text-gray-600 transition hover:text-blue-600 dark:text-slate-400 dark:hover:text-white"
                                                         >
                                                             {link.label}
                                                         </Link>
@@ -201,7 +201,7 @@ export default function Header() {
                                 <div className="mt-5 border-t border-gray-100 pt-4 dark:border-slate-700">
                                     <Link
                                         href="/services"
-                                        className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                                        className="inline-flex items-center gap-1 text-[14px] font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                                     >
                                         View all 24 services →
                                     </Link>

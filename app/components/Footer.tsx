@@ -32,10 +32,10 @@ export default function Footer() {
                                 <span className="font-semibold text-slate-200">Phone:</span> +91 9999 24 1024
                             </p>
                             <p>
-                                <span className="font-semibold text-slate-200">Email:</span> info@Tax Suvidha Kendrakendra.com
+                                <span className="font-semibold text-slate-200">Email:</span> info@taxsuvidhakendra.com
                             </p>
                             <p>
-                                <span className="font-semibold text-slate-200">Address:</span> New Delhi, India
+                                <span className="font-semibold text-slate-200">Address:</span> Office Number 403, Jain Complex, Opposite Metroplex mall, Nirman vihar delhi 110092
                             </p>
                         </div>
                     </div>

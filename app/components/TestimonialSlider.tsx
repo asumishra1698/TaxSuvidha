@@ -348,7 +348,7 @@ export default function TestimonialSlider() {
                             ←
                         </button>
 
-                        <div className="flex items-center gap-2">
+                        {/* <div className="flex items-center gap-2">
                             {Array.from({ length: testimonials.length }).map((_, idx) => (
                                 <button
                                     key={`dot-${idx}`}
@@ -359,7 +359,7 @@ export default function TestimonialSlider() {
                                         }`}
                                 />
                             ))}
-                        </div>
+                        </div> */}
 
                         <button
                             type="button"

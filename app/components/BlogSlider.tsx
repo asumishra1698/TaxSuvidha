@@ -225,7 +225,7 @@ export default function BlogSlider() {
             ←
           </button>
 
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             {Array.from({ length: blogs.length }).map((_, idx) => (
               <button
                 key={`blog-dot-${idx}`}
@@ -237,7 +237,7 @@ export default function BlogSlider() {
                 }`}
               />
             ))}
-          </div>
+          </div> */}
 
           <button
             type="button"

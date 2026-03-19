@@ -22,6 +22,26 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to see the application.
 
+### Contact Form Email Setup (Nodemailer)
+
+The contact form sends enquiry emails through SMTP using Nodemailer.
+
+1. Copy `.env.example` to `.env.local`
+2. Fill in your SMTP credentials and receiver email
+3. Restart the dev server after updating environment variables
+
+Required environment variables:
+
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USER`
+- `SMTP_PASS`
+- `CONTACT_RECEIVER_EMAIL`
+
+Optional:
+
+- `CONTACT_FROM_EMAIL` (defaults to `SMTP_USER`)
+
 ### Build for Production
 
 Create an optimized production build:

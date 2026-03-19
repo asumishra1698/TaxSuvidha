@@ -9,6 +9,9 @@ export default function Contact() {
     subject: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -19,12 +22,39 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    alert('Thank you for your message! We will get back to you soon.');
+
+    try {
+      setIsSubmitting(true);
+      setStatusMessage(null);
+      setSubmitError(null);
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result: { message?: string; error?: string } = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error ?? 'Failed to send your enquiry.');
+      }
+
+      setStatusMessage(result.message ?? 'Thank you for your message.');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong while sending your enquiry.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -159,10 +189,19 @@ export default function Contact() {
 
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   className="btn-primary w-full px-5 py-2.5"
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
+
+                {statusMessage ? (
+                  <p className="text-sm text-green-600 dark:text-green-400">{statusMessage}</p>
+                ) : null}
+
+                {submitError ? (
+                  <p className="text-sm text-red-600 dark:text-red-400">{submitError}</p>
+                ) : null}
               </form>
             </div>
           </div>

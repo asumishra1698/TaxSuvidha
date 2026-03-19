@@ -11,9 +11,9 @@ export default function Footer() {
     return (
         <footer className="border-t border-slate-800 bg-slate-950">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 gap-10 md:grid-cols-6 py-14">
+                <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-6">
                     {/* Brand */}
-                    <div className="md:col-span-2">
+                    <div className="col-span-2 md:col-span-2">
                         <Link href="/" className="inline-flex items-center">
                             <Image
                                 src="/taxlogo.png"

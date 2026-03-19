@@ -24,6 +24,9 @@ export default function ConsultationForm() {
     contactNumber: '',
     services: [],
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -42,17 +45,55 @@ export default function ConsultationForm() {
     }));
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log('Consultation form submitted:', formState);
-    alert('Thanks! Our team will contact you shortly.');
 
-    setFormState({
-      name: '',
-      email: '',
-      contactNumber: '',
-      services: [],
-    });
+    if (formState.services.length === 0) {
+      setSubmitError('Please select at least one service.');
+      setStatusMessage(null);
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      setSubmitError(null);
+      setStatusMessage(null);
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          subject: 'Consultation Request',
+          message: `Contact Number: ${formState.contactNumber}\nRequested Services: ${formState.services.join(', ')}`,
+        }),
+      });
+
+      const result: { message?: string; error?: string } = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error ?? 'Failed to submit consultation request.');
+      }
+
+      setStatusMessage(result.message ?? 'Thanks! Our team will contact you shortly.');
+      setFormState({
+        name: '',
+        email: '',
+        contactNumber: '',
+        services: [],
+      });
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong while submitting your request.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -150,10 +191,19 @@ export default function ConsultationForm() {
 
       <button
         type="submit"
+        disabled={isSubmitting}
         className="btn-primary mt-6 w-full px-5 py-3"
       >
-        Submit Request
+        {isSubmitting ? 'Submitting...' : 'Submit Request'}
       </button>
+
+      {statusMessage ? (
+        <p className="mt-3 text-sm text-green-600 dark:text-green-400">{statusMessage}</p>
+      ) : null}
+
+      {submitError ? (
+        <p className="mt-3 text-sm text-red-600 dark:text-red-400">{submitError}</p>
+      ) : null}
     </form>
   );
 }

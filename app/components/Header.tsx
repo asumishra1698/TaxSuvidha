@@ -249,7 +249,7 @@ export default function Header() {
                 />
 
                 <aside
-                    className={`fixed right-0 top-0 z-50 h-dvh w-[86vw] max-w-sm transform border-l border-gray-200 bg-white p-5 shadow-2xl transition-transform duration-300 ease-out dark:border-slate-700 dark:bg-black ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                    className={`fixed right-0 top-0 z-50 flex h-dvh w-[86vw] max-w-sm transform flex-col border-l border-gray-200 bg-white p-5 shadow-2xl transition-transform duration-300 ease-out dark:border-slate-700 dark:bg-black ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
                         }`}
                     aria-hidden={!isMenuOpen}
                 >
@@ -265,7 +265,7 @@ export default function Header() {
                         </button>
                     </div>
 
-                    <div className="mt-4 space-y-2 overflow-y-auto pb-8">
+                    <div className="mt-4 min-h-0 flex-1 space-y-2 overflow-y-auto pb-8">
                         <Link
                             href="/"
                             onClick={closeMobileMenu}

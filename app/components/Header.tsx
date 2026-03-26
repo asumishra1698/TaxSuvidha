@@ -138,10 +138,10 @@ export default function Header() {
                         <Image
                             src="/taxlogo.png"
                             alt="Tax Suvidha Kendra logo"
-                            width={260}
-                            height={80}
+                            width={220}
+                            height={60}
                             priority
-                            className="h-15 w-auto object-contain"
+                            className="h-15  object-contain"
                         />
                     </Link>
 

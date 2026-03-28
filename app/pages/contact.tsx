@@ -137,9 +137,7 @@ export default function Contact() {
                     Address
                   </h3>
                   <p className="mt-2 text-gray-600 dark:text-gray-400">
-                    Office Number 403, Jain Complex,<br />
-                    Opposite Metroplex mall, Nirman vihar,<br />
-                    Delhi 110092
+                    Shahdara, Near Durga puri Chowk, Delhi, India 110032
                   </p>
                 </div>
 
@@ -153,24 +151,7 @@ export default function Contact() {
                     Mon-Fri: 9 AM - 8 PM EST<br />
                     Sat-Sun: 10 AM - 6 PM EST
                   </p>
-                </div>
-
-                {/* <div className="flex gap-3">
-                  <a
-                    href="tel:+919999241024"
-                    className="inline-flex flex-1 items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 dark:border-slate-600 dark:text-gray-300 dark:hover:bg-slate-800"
-                  >
-                    Call Now
-                  </a>
-                  <a
-                    href="https://wa.me/919999241024"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex flex-1 items-center justify-center rounded-lg bg-green-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-600"
-                  >
-                    WhatsApp
-                  </a>
-                </div> */}
+                </div>               
               </div>
             </div>
 

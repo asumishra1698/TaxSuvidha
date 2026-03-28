@@ -35,7 +35,7 @@ export default function Footer() {
                                 <span className="font-semibold text-slate-200">Email:</span> info@taxsuvidhakendra.com
                             </p>
                             <p>
-                                <span className="font-semibold text-slate-200">Address:</span> Office Number 403, Jain Complex, Opposite Metroplex mall, Nirman vihar delhi 110092
+                                <span className="font-semibold text-slate-200">Address:</span> Shahdara, Near Durga puri Chowk, Delhi, India 110032
                             </p>
                         </div>
                     </div>

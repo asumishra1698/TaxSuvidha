@@ -155,7 +155,7 @@ export default function Contact() {
                   </p>
                 </div>
 
-                <div className="flex gap-3">
+                {/* <div className="flex gap-3">
                   <a
                     href="tel:+919999241024"
                     className="inline-flex flex-1 items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 dark:border-slate-600 dark:text-gray-300 dark:hover:bg-slate-800"
@@ -170,7 +170,7 @@ export default function Contact() {
                   >
                     WhatsApp
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
 

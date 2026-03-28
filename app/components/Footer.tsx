@@ -11,16 +11,16 @@ export default function Footer() {
     return (
         <footer className="border-t border-slate-800 bg-slate-950">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-6">
+                <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-5">
                     {/* Brand */}
                     <div className="col-span-2 md:col-span-2">
                         <Link href="/" className="inline-flex items-center">
                             <Image
-                                src="/taxlogo.png"
+                                src="/whitelogo.png"
                                 alt="Tax Suvidha Kendra logo"
                                 width={200}
                                 height={60}
-                                className="h-12 w-auto object-contain"
+                                className="object-contain"
                             />
                         </Link>
                         <p className="mt-4 max-w-md text-sm leading-6 text-slate-400">
@@ -38,39 +38,6 @@ export default function Footer() {
                                 <span className="font-semibold text-slate-200">Address:</span> Office Number 403, Jain Complex, Opposite Metroplex mall, Nirman vihar delhi 110092
                             </p>
                         </div>
-                    </div>
-
-                    {/* Product */}
-                    <div>
-                        <h3 className="text-sm font-semibold text-white">
-                            Product
-                        </h3>
-                        <ul className="mt-4 space-y-2">
-                            <li>
-                                <Link
-                                    href="#"
-                                    className="text-sm text-slate-400 transition hover:text-white"
-                                >
-                                    Features
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="#"
-                                    className="text-sm text-slate-400 transition hover:text-white"
-                                >
-                                    Pricing
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="#"
-                                    className="text-sm text-slate-400 transition hover:text-white"
-                                >
-                                    Security
-                                </Link>
-                            </li>
-                        </ul>
                     </div>
 
                     {/* Company */}
@@ -103,6 +70,14 @@ export default function Footer() {
                                     Contact
                                 </Link>
                             </li>
+                            <li>
+                                <Link
+                                    href="/blogs"
+                                    className="text-sm text-slate-400 transition hover:text-white"
+                                >
+                                    Blogs
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
@@ -114,34 +89,34 @@ export default function Footer() {
                         <ul className="mt-4 space-y-2">
                             <li>
                                 <Link
-                                    href="#"
+                                    href="/services"
                                     className="text-sm text-slate-400 transition hover:text-white"
                                 >
-                                    Bookkeeping Guide
+                                    Registrations
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    href="#"
+                                    href="/services"
                                     className="text-sm text-slate-400 transition hover:text-white"
                                 >
-                                    Tax Filing
+                                    Compliance
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    href="#"
+                                    href="/services"
                                     className="text-sm text-slate-400 transition hover:text-white"
                                 >
-                                    GST Returns
+                                    Taxation
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    href="/blogs"
+                                    href="/services"
                                     className="text-sm text-slate-400 transition hover:text-white"
                                 >
-                                    Blog
+                                    IPR
                                 </Link>
                             </li>
                         </ul>
@@ -203,75 +178,75 @@ export default function Footer() {
                     style={{ maxHeight: showAll ? '9999px' : '0px' }}
                 >
 
-                {/* Registrations */}
-                <div className="pt-4 pb-2">
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-amber-500">Registrations</h3>
-                    <div className="mt-4" />
-                    <div className="mt-6 grid grid-cols-2 gap-y-3 gap-x-6 sm:grid-cols-4">
-                        <Link href="/services/private-limited-company-registration" className="text-sm text-slate-400 transition hover:text-white">Private Limited Company Registration</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Sole Proprietorship Registration</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Trust Registration</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Fssai Registration</Link>
-                        <Link href="/services/partnership-firm-registration" className="text-sm text-slate-400 transition hover:text-white">Partnership Firm Registration</Link>
-                        <Link href="/services/startup-india-registration" className="text-sm text-slate-400 transition hover:text-white">Startup India Registration</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Society Registration</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Nidhi Company Registration</Link>
-                        <Link href="/services/llp-registration" className="text-sm text-slate-400 transition hover:text-white">LLP Registration</Link>
-                        <Link href="/services/one-person-company-registration" className="text-sm text-slate-400 transition hover:text-white">One Person Company Registration</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">NGO Registration</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Section 8 Company Registration</Link>
-                        <Link href="/services/trade-license" className="text-sm text-slate-400 transition hover:text-white">Trade License</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Gumasta License</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Digital Signature Certificate</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Virtual Office</Link>
+                    {/* Registrations */}
+                    <div className="pt-4 pb-2">
+                        <h3 className="text-sm font-bold uppercase tracking-widest text-amber-500">Registrations</h3>
+                        <div className="mt-4" />
+                        <div className="mt-6 grid grid-cols-2 gap-y-3 gap-x-6 sm:grid-cols-4">
+                            <Link href="/services/private-limited-company-registration" className="text-sm text-slate-400 transition hover:text-white">Private Limited Company Registration</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Sole Proprietorship Registration</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Trust Registration</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Fssai Registration</Link>
+                            <Link href="/services/partnership-firm-registration" className="text-sm text-slate-400 transition hover:text-white">Partnership Firm Registration</Link>
+                            <Link href="/services/startup-india-registration" className="text-sm text-slate-400 transition hover:text-white">Startup India Registration</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Society Registration</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Nidhi Company Registration</Link>
+                            <Link href="/services/llp-registration" className="text-sm text-slate-400 transition hover:text-white">LLP Registration</Link>
+                            <Link href="/services/one-person-company-registration" className="text-sm text-slate-400 transition hover:text-white">One Person Company Registration</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">NGO Registration</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Section 8 Company Registration</Link>
+                            <Link href="/services/trade-license" className="text-sm text-slate-400 transition hover:text-white">Trade License</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Gumasta License</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Digital Signature Certificate</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Virtual Office</Link>
+                        </div>
                     </div>
-                </div>
 
-                {/* Compliance */}
-                <div className="pt-4 pb-2">
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-amber-500">Compliance</h3>
-                    <div className="mt-4" />
-                    <div className="mt-6 grid grid-cols-2 gap-y-3 gap-x-6 sm:grid-cols-4">
-                        <Link href="/services/llp-annual-compliance" className="text-sm text-slate-400 transition hover:text-white">LLP Annual Compliance</Link>
-                        <Link href="/services/epf-registration" className="text-sm text-slate-400 transition hover:text-white">EPF Registration</Link>
-                        <Link href="/services/director-appointment" className="text-sm text-slate-400 transition hover:text-white">Director Appointment</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Change Pvt Ltd Company Name</Link>
-                        <Link href="/services/annual-compliance-pvt-ltd" className="text-sm text-slate-400 transition hover:text-white">Annual Compliance for Private Limited Company</Link>
-                        <Link href="/services/winding-up-company" className="text-sm text-slate-400 transition hover:text-white">Winding Up of A Company</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Book Keeping and Accounting Services</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Shop and Establishment Act Registration</Link>
-                        <Link href="/services/udyam-msme-registration" className="text-sm text-slate-400 transition hover:text-white">Udyam (MSME) Registration</Link>
+                    {/* Compliance */}
+                    <div className="pt-4 pb-2">
+                        <h3 className="text-sm font-bold uppercase tracking-widest text-amber-500">Compliance</h3>
+                        <div className="mt-4" />
+                        <div className="mt-6 grid grid-cols-2 gap-y-3 gap-x-6 sm:grid-cols-4">
+                            <Link href="/services/llp-annual-compliance" className="text-sm text-slate-400 transition hover:text-white">LLP Annual Compliance</Link>
+                            <Link href="/services/epf-registration" className="text-sm text-slate-400 transition hover:text-white">EPF Registration</Link>
+                            <Link href="/services/director-appointment" className="text-sm text-slate-400 transition hover:text-white">Director Appointment</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Change Pvt Ltd Company Name</Link>
+                            <Link href="/services/annual-compliance-pvt-ltd" className="text-sm text-slate-400 transition hover:text-white">Annual Compliance for Private Limited Company</Link>
+                            <Link href="/services/winding-up-company" className="text-sm text-slate-400 transition hover:text-white">Winding Up of A Company</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Book Keeping and Accounting Services</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Shop and Establishment Act Registration</Link>
+                            <Link href="/services/udyam-msme-registration" className="text-sm text-slate-400 transition hover:text-white">Udyam (MSME) Registration</Link>
+                        </div>
                     </div>
-                </div>
 
-                {/* Taxation */}
-                <div className="pt-4 pb-2">
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-amber-500">Taxation</h3>
-                    <div className="mt-4" />
-                    <div className="mt-6 grid grid-cols-2 gap-y-3 gap-x-6 sm:grid-cols-4">
-                        <Link href="/services/income-tax-return-filing" className="text-sm text-slate-400 transition hover:text-white">Income Tax Return Filing</Link>
-                        <Link href="/services/tds-return-filing" className="text-sm text-slate-400 transition hover:text-white">TDS Return Filing</Link>
-                        <Link href="/services/gst-registration" className="text-sm text-slate-400 transition hover:text-white">GST Registration</Link>
-                        <Link href="/services/gstr-9-filing" className="text-sm text-slate-400 transition hover:text-white">GSTR-9 Filing</Link>
-                        <Link href="/services/gst-return-filing" className="text-sm text-slate-400 transition hover:text-white">GST Return Filing</Link>
-                        <Link href="/services/pf-return-filing" className="text-sm text-slate-400 transition hover:text-white">PF Return Filing</Link>
+                    {/* Taxation */}
+                    <div className="pt-4 pb-2">
+                        <h3 className="text-sm font-bold uppercase tracking-widest text-amber-500">Taxation</h3>
+                        <div className="mt-4" />
+                        <div className="mt-6 grid grid-cols-2 gap-y-3 gap-x-6 sm:grid-cols-4">
+                            <Link href="/services/income-tax-return-filing" className="text-sm text-slate-400 transition hover:text-white">Income Tax Return Filing</Link>
+                            <Link href="/services/tds-return-filing" className="text-sm text-slate-400 transition hover:text-white">TDS Return Filing</Link>
+                            <Link href="/services/gst-registration" className="text-sm text-slate-400 transition hover:text-white">GST Registration</Link>
+                            <Link href="/services/gstr-9-filing" className="text-sm text-slate-400 transition hover:text-white">GSTR-9 Filing</Link>
+                            <Link href="/services/gst-return-filing" className="text-sm text-slate-400 transition hover:text-white">GST Return Filing</Link>
+                            <Link href="/services/pf-return-filing" className="text-sm text-slate-400 transition hover:text-white">PF Return Filing</Link>
+                        </div>
                     </div>
-                </div>
 
-                {/* IPR */}
-                <div className="pt-4 pb-8">
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-amber-500">IPR</h3>
-                    <div className="mt-4" />
-                    <div className="mt-6 grid grid-cols-2 gap-y-3 gap-x-6 sm:grid-cols-4">
-                        <Link href="/services/copyright-registration" className="text-sm text-slate-400 transition hover:text-white">Copyright Registration</Link>
-                        <Link href="/services/patent-registration" className="text-sm text-slate-400 transition hover:text-white">Patent Registration</Link>
-                        <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Trademark Rectification</Link>
-                        <Link href="/services/trademark-objection" className="text-sm text-slate-400 transition hover:text-white">Trademark Objection</Link>
-                        <Link href="/services/trademark-registration" className="text-sm text-slate-400 transition hover:text-white">Trademark Registration</Link>
-                        <Link href="/services/trademark-renewal" className="text-sm text-slate-400 transition hover:text-white">Trademark Renewal</Link>
-                        <Link href="/services/international-trademark-registration" className="text-sm text-slate-400 transition hover:text-white">International Trademark Registration</Link>
+                    {/* IPR */}
+                    <div className="pt-4 pb-8">
+                        <h3 className="text-sm font-bold uppercase tracking-widest text-amber-500">IPR</h3>
+                        <div className="mt-4" />
+                        <div className="mt-6 grid grid-cols-2 gap-y-3 gap-x-6 sm:grid-cols-4">
+                            <Link href="/services/copyright-registration" className="text-sm text-slate-400 transition hover:text-white">Copyright Registration</Link>
+                            <Link href="/services/patent-registration" className="text-sm text-slate-400 transition hover:text-white">Patent Registration</Link>
+                            <Link href="#" className="text-sm text-slate-400 transition hover:text-white">Trademark Rectification</Link>
+                            <Link href="/services/trademark-objection" className="text-sm text-slate-400 transition hover:text-white">Trademark Objection</Link>
+                            <Link href="/services/trademark-registration" className="text-sm text-slate-400 transition hover:text-white">Trademark Registration</Link>
+                            <Link href="/services/trademark-renewal" className="text-sm text-slate-400 transition hover:text-white">Trademark Renewal</Link>
+                            <Link href="/services/international-trademark-registration" className="text-sm text-slate-400 transition hover:text-white">International Trademark Registration</Link>
+                        </div>
                     </div>
-                </div>
 
                 </div>
 
@@ -283,37 +258,25 @@ export default function Footer() {
                         </p>
                         <div className="flex space-x-6">
                             <a
-                                href="https://x.com"
+                                href="https://facebook.com"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-300 transition hover:border-slate-500 hover:text-white"
-                                aria-label="Twitter"
+                                aria-label="Facebook"
                             >
-                                <svg
-                                    className="h-5 w-5"
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                >
-                                    <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-7.029 3.746 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
+                                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0" />
                                 </svg>
                             </a>
                             <a
-                                href="https://github.com"
+                                href="https://www.instagram.com/taxsuvidha.kendra/"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-300 transition hover:border-slate-500 hover:text-white"
-                                aria-label="GitHub"
+                                aria-label="Instagram"
                             >
-                                <svg
-                                    className="h-5 w-5"
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                >
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.49.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.543 2.914 1.186.092-.923.35-1.543.636-1.896-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.817a9.56 9.56 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C17.137 18.194 20 14.44 20 10.017 20 4.484 15.522 0 10 0z"
-                                        clipRule="evenodd"
-                                    />
+                                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.069 1.646.069 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.069-4.85.069s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.497 5.782 2.225 7.148 2.163 8.414 2.105 8.794 2.163 12 2.163zm0-2.163C8.741 0 8.332.012 7.052.07 5.771.128 4.659.334 3.678 1.315c-.98.98-1.187 2.092-1.245 3.373C2.012 5.668 2 6.077 2 12c0 5.923.012 6.332.07 7.612.058 1.281.265 2.393 1.245 3.373.98.98 2.092 1.187 3.373 1.245C8.332 23.988 8.741 24 12 24s3.668-.012 4.948-.07c1.281-.058 2.393-.265 3.373-1.245.98-.98 1.187-2.092 1.245-3.373.058-1.28.07-1.689.07-7.612 0-5.923-.012-6.332-.07-7.612-.058-1.281-.265-2.393-1.245-3.373-.98-.98-2.092-1.187-3.373-1.245C15.668.012 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm7.2-11.162a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z" />
                                 </svg>
                             </a>
                             <a

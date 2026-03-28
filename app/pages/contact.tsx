@@ -11,7 +11,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
+    mobile_number: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -55,7 +55,7 @@ export default function Contact() {
       }
 
       showToast('success', result.message ?? 'Thank you for your message.');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', mobile_number: '', message: '' });
     } catch (error) {
       showToast(
         'error',
@@ -71,7 +71,7 @@ export default function Contact() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-slate-50 dark:from-black dark:to-slate-950">
       {/* Header Section */}
-      <section className="border-b border-gray-200 bg-white/70 py-16 backdrop-blur-sm sm:py-20 dark:border-gray-700 dark:bg-slate-900/60">
+      <section className="bg-white/70 py-10 backdrop-blur-sm sm:py-10 dark:border-gray-700 dark:bg-slate-900/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-blue-900/60 dark:bg-blue-900/20 dark:text-blue-300">
             We are here to help
@@ -83,27 +83,12 @@ export default function Contact() {
           </h1>
           <p className="mt-4 max-w-3xl text-lg text-gray-600 dark:text-gray-400">
             Reach out for GST, ITR, company registration, compliance filings, or any tax-related support. Our experts will respond quickly with clear next steps.
-          </p>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Support</p>
-              <p className="mt-1 text-2xl font-bold text-gray-900 dark:text-white">24/7</p>
-            </div>
-            <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Response</p>
-              <p className="mt-1 text-2xl font-bold text-gray-900 dark:text-white">Fast</p>
-            </div>
-            <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Guidance</p>
-              <p className="mt-1 text-2xl font-bold text-gray-900 dark:text-white">Expert</p>
-            </div>
-          </div>
+          </p>          
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-10 sm:py-14">
+      <section className="py-5 sm:py-5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-12">
             {/* Contact Info */}
@@ -201,16 +186,17 @@ export default function Contact() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-900 dark:text-white">
-                      Subject
+                      Mobile Number
                     </label>
                     <input
-                      type="text"
-                      name="subject"
-                      value={formData.subject}
+                      type="tel"
+                      name="mobile_number"
+                      value={formData.mobile_number}
                       onChange={handleChange}
                       required
+                      maxLength={10}
                       className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500"
-                      placeholder="How can we help?"
+                      placeholder="Your mobile number"
                     />
                   </div>
 
@@ -242,7 +228,7 @@ export default function Contact() {
                   <div className="border-b border-gray-200 px-5 py-4 dark:border-slate-700">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Find Us on Map</h3>
                     <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                      Visit our office in Nirman Vihar, Delhi.
+                      Visit our office in Shahdara, Near Durga puri Chowk, Delhi, India 110032.
                     </p>
                   </div>
                   <iframe

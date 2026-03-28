@@ -6,6 +6,7 @@ type ContactPayload = {
   email: string;
   subject: string;
   message: string;
+  mobile_number: string;
 };
 
 const requiredEnvVars = [
@@ -46,9 +47,10 @@ export async function POST(request: Request) {
     const name = body.name?.trim();
     const email = body.email?.trim();
     const subject = body.subject?.trim();
+    const mobile_number = body.mobile_number?.trim();
     const message = body.message?.trim();
 
-    if (!name || !email || !subject || !message) {
+    if (!name || !email || !mobile_number || !message) {
       return NextResponse.json(
         { error: 'All fields are required.' },
         { status: 400 }
@@ -57,7 +59,7 @@ export async function POST(request: Request) {
 
     const escapedName = escapeHtml(name);
     const escapedEmail = escapeHtml(email);
-    const escapedSubject = escapeHtml(subject);
+    const escapedMobileNumber = escapeHtml(mobile_number);
     const escapedMessage = escapeHtml(message).replace(/\n/g, '<br />');
 
     const transporter = nodemailer.createTransport({
@@ -75,7 +77,7 @@ export async function POST(request: Request) {
       to: process.env.CONTACT_RECEIVER_EMAIL,
       replyTo: email,
       subject: `[Website Enquiry] ${subject} - ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
+      text: `Name: ${name}\nEmail: ${email}\nMobile Number: ${mobile_number}\n\nMessage:\n${message}`,
       html: `
         <div style="margin:0;background:#f4f7fb;padding:24px 12px;font-family:Arial,Helvetica,sans-serif;color:#0f172a;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #e2e8f0;">
@@ -97,8 +99,8 @@ export async function POST(request: Request) {
                     <td style="padding:10px 0;border-bottom:1px solid #e2e8f0;font-size:15px;color:#0f172a;">${escapedEmail}</td>
                   </tr>
                   <tr>
-                    <td style="padding:10px 0;border-bottom:1px solid #e2e8f0;width:140px;font-size:13px;color:#64748b;"><strong>Subject</strong></td>
-                    <td style="padding:10px 0;border-bottom:1px solid #e2e8f0;font-size:15px;color:#0f172a;">${escapedSubject}</td>
+                    <td style="padding:10px 0;border-bottom:1px solid #e2e8f0;width:140px;font-size:13px;color:#64748b;"><strong>Mobile Number</strong></td>
+                    <td style="padding:10px 0;border-bottom:1px solid #e2e8f0;font-size:15px;color:#0f172a;">${escapedMobileNumber}</td>
                   </tr>
                 </table>
 

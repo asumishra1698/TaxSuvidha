@@ -36,6 +36,12 @@ export async function generateMetadata({
   return {
     title: `${service.title} | Tax Suvidha Kendra`,
     description: service.overview,
+    alternates: {
+      canonical: `https://taxsuvidha-c3c4a.web.app/services/${slug}`,
+    },
+    openGraph: {
+      url: `https://taxsuvidha-c3c4a.web.app/services/${slug}`,
+    },
   };
 }
 

@@ -32,6 +32,12 @@ export async function generateMetadata({
   return {
     title: `${blog.title} | Tax Suvidha Kendra Blog`,
     description: blog.excerpt,
+    alternates: {
+      canonical: `https://taxsuvidha-c3c4a.web.app/blogs/${slug}`,
+    },
+    openGraph: {
+      url: `https://taxsuvidha-c3c4a.web.app/blogs/${slug}`,
+    },
   };
 }
 

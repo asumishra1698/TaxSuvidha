@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 const SITE_NAME = 'Tax Suvidha Kendra';
-const SITE_URL = 'https://taxsuvidhakendra.com';
+const SITE_URL = 'https://taxsuvidha-c3c4a.web.app';
 
 type SEOOptions = {
   title: string;

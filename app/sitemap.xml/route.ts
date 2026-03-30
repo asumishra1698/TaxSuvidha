@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { SERVICES_DATA } from '../services/data';
 
 export async function GET() {
-    const baseUrl = 'https://taxsuvidhakendra.com';
+    const baseUrl = 'https://taxsuvidha-c3c4a.web.app';
     const staticPages = [
         '',
         '/services',

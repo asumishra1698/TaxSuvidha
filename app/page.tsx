@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Navigate complex tax regulations with confidence using expert guidance, streamlined filing, and secure workflows.',
   alternates: {
-    canonical: 'https://taxsuvidhakendra.com/',
+    canonical: 'https://taxsuvidha-c3c4a.web.app/',
   },
 };
 

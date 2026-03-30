@@ -13,7 +13,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://taxsuvidhakendra.com'),
+  metadataBase: new URL('https://taxsuvidha-c3c4a.web.app'),
   title: {
     default: 'Tax Suvidha Kendra | Tax Management Made Simple',
     template: '%s',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Tax Suvidha Kendra | Tax Management Made Simple',
     description: 'Your trusted tax guidance and management platform.',
-    url: 'https://taxsuvidhakendra.com',
+    url: 'https://taxsuvidha-c3c4a.web.app',
     siteName: 'Tax Suvidha Kendra',
     type: 'website',
     locale: 'en_US',
@@ -66,6 +66,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <meta name="google-site-verification" content="bJwBgxhnhvYE3l1COkiWjnStIynSCyZ3uzdGxfrzJIY" />
       </head>
       <body className={`${poppins.className} ${poppins.variable} antialiased`}>
         <Header />
